@@ -1,2 +1,2 @@
 # drocsid
-a web-based communication platform 
+A web-based communication platform designed to cater towards education and professional purposes. 
