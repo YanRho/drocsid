@@ -1,27 +1,30 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import {
   ClerkProvider,
   SignInButton,
+  SignOutButton,
   SignedIn,
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
 import "./globals.css";
-// import { Open_Sans } from "next/font/google";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { cn } from "@/lib/utils";
+import { Open_Sans } from "next/font/google";
 
-// const font = Open_Sans({ subsets: ["latin"] });
+const font = Open_Sans({ subsets: ["latin"] });
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+// const geistSans = localFont({
+//   src: "./fonts/GeistVF.woff",
+//   variable: "--font-geist-sans",
+//   weight: "100 900",
+// });
+// const geistMono = localFont({
+//   src: "./fonts/GeistMonoVF.woff",
+//   variable: "--font-geist-mono",
+//   weight: "100 900",
+// });
 
 export const metadata: Metadata = {
   title: "Drocsid",
@@ -35,18 +38,25 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {/* This creates the singout signin button  */}
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
+      <html lang="en" suppressHydrationWarning>
+        <body className={cn(
+          font.className,
+          "bg-white dark:bg-[#313338]"
+
+        )}>
+          {/* Creates Dark/Light Mode */}
+          <ThemeProvider 
+            attribute="class"
+            defaultTheme="system"
+            enableSystem={false}
+            disableTransitionOnChange
+            storageKey="discord-theme">
+            {children}
+          </ThemeProvider>
+          {/* This creates the user button when signed in */}
           <SignedIn>
-            <UserButton />
+            <UserButton/>
           </SignedIn>
-          {children}
         </body>
       </html>
     </ClerkProvider>
