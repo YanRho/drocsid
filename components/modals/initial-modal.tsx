@@ -4,6 +4,8 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -39,6 +41,12 @@ const formSchema = z.object({
 
 // Creates the Server Modal
 export const InitialModal = () => {
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
