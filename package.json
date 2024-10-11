@@ -21,6 +21,11 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+<<<<<<< Updated upstream
+=======
+    "react-dropzone": "^14.2.9",
+    "react-hook-form": "^7.53.0",
+>>>>>>> Stashed changes
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },

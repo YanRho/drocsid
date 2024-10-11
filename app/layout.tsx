@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 // import localFont from "next/font/local";
 import {
   ClerkProvider,
-  SignInButton,
-  SignOutButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
 } from "@clerk/nextjs";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -39,24 +34,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={cn(
-          font.className,
-          "bg-white dark:bg-[#313338]"
-
-        )}>
+        <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
           {/* Creates Dark/Light Mode */}
-          <ThemeProvider 
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem={false}
-            disableTransitionOnChange
-            storageKey="discord-theme">
+            storageKey="discord-theme"
+          >
             {children}
           </ThemeProvider>
-          {/* This creates the user button when signed in */}
-          <SignedIn>
-            <UserButton/>
-          </SignedIn>
         </body>
       </html>
     </ClerkProvider>
