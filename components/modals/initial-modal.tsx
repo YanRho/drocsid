@@ -41,12 +41,6 @@ const formSchema = z.object({
 
 // Creates the Server Modal
 export const InitialModal = () => {
-  const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
